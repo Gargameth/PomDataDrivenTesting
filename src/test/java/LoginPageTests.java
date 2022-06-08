@@ -23,7 +23,7 @@ public class LoginPageTests {
         this.driver = driver;
     }
 
-    public void LoginWithValidCredentialsTest(WebDriverWait wait) throws InterruptedException {
+    public void LoginWithValidCredentialsTest(WebDriverWait wait) {
         Dotenv dotenv = null;
         dotenv = Dotenv.configure().filename("streetCreds.env").load();
         driver.get("https://jira-auto.codecool.metastage.net/");
@@ -32,6 +32,5 @@ public class LoginPageTests {
         wait.until(ExpectedConditions.presenceOfElementLocated(usernameField)).sendKeys(username);
         wait.until(ExpectedConditions.presenceOfElementLocated(passwordField)).sendKeys(password);
         wait.until(ExpectedConditions.presenceOfElementLocated(loginBtn)).click();
-        Thread.sleep(5000);
     }
 }

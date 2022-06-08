@@ -17,7 +17,7 @@ public class CollectionOfTests {
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
     @Test
-    public void LoginTests() throws InterruptedException {
+    public void LoginTests() {
         LoginPageTests loginPageTests = new LoginPageTests(driver);
         loginPageTests.LoginWithValidCredentialsTest(wait);
     }
