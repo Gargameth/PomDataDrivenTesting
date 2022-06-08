@@ -28,6 +28,7 @@ public class CollectionOfTests {
         loginPageTests.LoginWithValidCredentialsTest(wait);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='aui-avatar aui-avatar-small']")));
         profilePage.UserIsLoggedInAssertion(loginPageTests.username);
+        driver.quit();
     }
 
     @Test
@@ -35,6 +36,7 @@ public class CollectionOfTests {
         LoginPage loginPageTests = new LoginPage(driver);
         loginPageTests.LoginWithInvalidPasswordTest(wait);
         LoginWithValidCredentials();
+        driver.quit();
     }
 
     @Test
@@ -42,6 +44,7 @@ public class CollectionOfTests {
         LoginPage loginPageTests = new LoginPage(driver);
         loginPageTests.LoginWithNoUsernameAndPasswordTest(wait);
         LoginWithValidCredentials();
+        driver.quit();
     }
 
     @Rule
