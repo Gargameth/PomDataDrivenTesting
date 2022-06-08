@@ -18,7 +18,7 @@ public class CollectionOfTests {
 
     @Test
     public void LoginTests() {
-        LoginPageTests loginPageTests = new LoginPageTests(driver);
+        LoginPage loginPageTests = new LoginPage(driver);
         loginPageTests.LoginWithValidCredentialsTest(wait);
     }
 }

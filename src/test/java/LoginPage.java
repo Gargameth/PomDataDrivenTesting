@@ -13,13 +13,13 @@ import java.time.Duration;
 import io.github.cdimascio.dotenv.Dotenv;
 
 
-public class LoginPageTests {
+public class LoginPage {
     WebDriver driver;
-    By usernameField = By.id("login-form-username");
-    By passwordField = By.id("login-form-password");
-    By loginBtn = By.name("login");
+    By usernameField = By.xpath("//input[@id='login-form-username']");
+    By passwordField = By.xpath("//input[@id='login-form-password']");
+    By loginBtn = By.xpath("//input[@name='login']");;
 
-    public LoginPageTests(WebDriver driver){
+    public LoginPage(WebDriver driver){
         this.driver = driver;
     }
 
