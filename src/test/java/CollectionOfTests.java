@@ -37,6 +37,13 @@ public class CollectionOfTests {
         LoginWithValidCredentials();
     }
 
+    @Test
+    public void LoginWithNoCredentials(){
+        LoginPage loginPageTests = new LoginPage(driver);
+        loginPageTests.LoginWithNoUsernameAndPasswordTest(wait);
+        LoginWithValidCredentials();
+    }
+
     @Rule
     public TestWatcher watcher = new TestWatcher() {
         @Override

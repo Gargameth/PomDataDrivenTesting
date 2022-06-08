@@ -49,4 +49,16 @@ public class LoginPage {
         wait.until(ExpectedConditions.presenceOfElementLocated(errorMessage));
         Assert.assertNotNull(errorMessage);
     }
+
+    public void LoginWithNoUsernameAndPasswordTest(WebDriverWait wait){
+        driver.get("https://jira-auto.codecool.metastage.net/");
+        username = "";
+        password = "";
+        wait.until(ExpectedConditions.presenceOfElementLocated(usernameField)).sendKeys(username);
+        wait.until(ExpectedConditions.presenceOfElementLocated(passwordField)).sendKeys(password);
+        wait.until(ExpectedConditions.presenceOfElementLocated(loginBtn)).click();
+        By errorMessage = By.xpath("//div[@class='aui-message aui-message-error']");
+        wait.until(ExpectedConditions.presenceOfElementLocated(errorMessage));
+        Assert.assertNotNull(errorMessage);
+    }
 }
