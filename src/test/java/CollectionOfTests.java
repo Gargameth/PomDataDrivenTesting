@@ -1,7 +1,9 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.openqa.selenium.By;
@@ -13,12 +15,23 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class CollectionOfTests {
-    WebDriver driver = new ChromeDriver();
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    WebDriver driver;
+    WebDriverWait wait;
 
-    @BeforeClass
-    public static void setupClass() {
+    @BeforeAll
+    static void setupClass() {
         WebDriverManager.chromedriver().setup();
+    }
+
+    @BeforeEach
+    void setupTest() {
+        driver = new ChromeDriver();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
+
+    @AfterEach
+    void teardown() {
+        driver.quit();
     }
 
     @Test
@@ -28,7 +41,6 @@ public class CollectionOfTests {
         loginPageTests.LoginWithValidCredentialsTest(wait);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='aui-avatar aui-avatar-small']")));
         profilePage.UserIsLoggedInAssertion(loginPageTests.username);
-        driver.quit();
     }
 
     @Test
@@ -36,7 +48,6 @@ public class CollectionOfTests {
         LoginPage loginPageTests = new LoginPage(driver);
         loginPageTests.LoginWithInvalidPasswordTest(wait);
         LoginWithValidCredentials();
-        driver.quit();
     }
 
     @Test
@@ -44,7 +55,6 @@ public class CollectionOfTests {
         LoginPage loginPageTests = new LoginPage(driver);
         loginPageTests.LoginWithNoUsernameAndPasswordTest(wait);
         LoginWithValidCredentials();
-        driver.quit();
     }
 
     @Rule
