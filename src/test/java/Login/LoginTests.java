@@ -1,7 +1,6 @@
 package Login;
 
 import UserProfilePage.UserProfilePage;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.Rule;
 import org.junit.jupiter.api.*;
@@ -26,8 +25,8 @@ public class LoginTests {
     @BeforeAll
     static void setupEnv() {
         dotenv = Dotenv.configure().filename("externalSource.env").load();
-        System.setProperty("webdriver.chrome.driver", dotenv.get("driverPath"));
-        WebDriverManager.chromedriver().setup();
+        /*System.setProperty("webdriver.chrome.driver", dotenv.get("driverPath"));
+        WebDriverManager.chromedriver().setup();*/
     }
     @BeforeEach
     public void setupClass() {

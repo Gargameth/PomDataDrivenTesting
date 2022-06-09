@@ -21,7 +21,7 @@ public class LoginPage {
     public void Login(String username, String password) {
         driver.get("https://jira-auto.codecool.metastage.net/");
         wait.until(ExpectedConditions.presenceOfElementLocated(usernameField)).sendKeys(username);
-        wait.until(ExpectedConditions.presenceOfElementLocated(passwordField)).sendKeys(password);
-        wait.until(ExpectedConditions.presenceOfElementLocated(loginBtn)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(passwordField)).sendKeys(password);
+        wait.until(ExpectedConditions.elementToBeClickable(loginBtn)).click();
     }
 }
