@@ -20,6 +20,7 @@ public class LoginPage {
     By usernameField = By.xpath("//input[@id='login-form-username']");
     By passwordField = By.xpath("//input[@id='login-form-password']");
     By loginBtn = By.xpath("//input[@name='login']");
+    By errorMessage = By.xpath("//div[@class='aui-message aui-message-error']");
 
     public LoginPage(WebDriver driver){
         this.driver = driver;
@@ -38,6 +39,11 @@ public class LoginPage {
 
     public void ClickOnLogInButton(WebDriverWait wait){
         wait.until(ExpectedConditions.presenceOfElementLocated(loginBtn)).click();
+    }
+
+    public void CheckForLoginError(WebDriver driver, WebDriverWait wait){
+        wait.until(ExpectedConditions.presenceOfElementLocated(errorMessage));
+        Assert.assertTrue(driver.findElement(errorMessage).isDisplayed());
     }
 
     /*public void LoginWithValidCredentialsTest(WebDriverWait wait) {
