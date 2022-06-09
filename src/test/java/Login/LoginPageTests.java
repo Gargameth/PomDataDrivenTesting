@@ -10,6 +10,7 @@ import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
@@ -44,7 +45,9 @@ public class LoginPageTests {
         loginPage.EnterUsername(wait,dotenv.get("Real_Username"));
         loginPage.EnterPassword(wait,dotenv.get("Password"));
         loginPage.ClickOnLogInButton(wait);
-        userProfilePage.NavigateToProfilePage(driver, wait);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='aui-avatar aui-avatar-small']")));
+        userProfilePage.NavigateToProfilePage(driver);
+        wait.until(ExpectedConditions.presenceOfElementLocated(userProfilePage.username));
         Assertions.assertEquals(dotenv.get("Real_Username"), driver.findElement(userProfilePage.username).getText());
     }
 
@@ -55,7 +58,8 @@ public class LoginPageTests {
         loginPage.EnterUsername(wait,dotenv.get("Real_Username"));
         loginPage.EnterPassword(wait,"Makumakakers");
         loginPage.ClickOnLogInButton(wait);
-        loginPage.CheckForLoginError(driver, wait);
+        loginPage.LoginError(driver, wait);
+        Assertions.assertTrue(driver.findElement(loginPage.errorMessage).isDisplayed());
     }
 
     @Test
@@ -65,7 +69,8 @@ public class LoginPageTests {
         loginPage.EnterUsername(wait,"");
         loginPage.EnterPassword(wait,"");
         loginPage.ClickOnLogInButton(wait);
-        loginPage.CheckForLoginError(driver, wait);
+        loginPage.LoginError(driver, wait);
+        Assertions.assertTrue(driver.findElement(loginPage.errorMessage).isDisplayed());
     }
 
     @Rule
