@@ -1,6 +1,6 @@
-package CreateIssue;
+package Tests;
 
-import Login.LoginPage;
+import Pages.LoginPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.Rule;
@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.BufferedReader;
@@ -24,8 +23,6 @@ public class CreateIssueTests {
     private WebDriverWait wait;
     private static Dotenv dotenv;
     private LoginPage loginPage;
-
-
     @BeforeAll
     static void setupEnv() {
         dotenv = Dotenv.configure().filename("externalSource.env").load();
@@ -34,9 +31,8 @@ public class CreateIssueTests {
     }
     @BeforeEach
     public void setupClass() {
-        driver = new ChromeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        loginPage = new LoginPage(driver, wait);
+        loginPage = new LoginPage(driver, wait, dotenv);
     }
 
     @AfterEach

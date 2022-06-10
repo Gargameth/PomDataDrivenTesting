@@ -1,16 +1,5 @@
-import Login.LoginPage;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.rules.TestWatcher;
-import org.junit.runner.Description;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -38,7 +27,7 @@ public class CollectionOfTests {
     @Test
     public void LoginWithValidCredentials() {
         LoginPage loginPageTests = new LoginPage(driver);
-        UserProfilePage.UserProfilePage profilePage = new UserProfilePage.UserProfilePage(driver);
+        Pages.UserProfilePage profilePage = new Pages.UserProfilePage(driver);
         loginPageTests.LoginWithValidCredentialsTest(wait);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='aui-avatar aui-avatar-small']")));
         profilePage.UserIsLoggedInAssertion(loginPageTests.username);
