@@ -162,5 +162,7 @@ buildNumber.properties
 
 .idea/
 
+src/test/resources/
+
 # End of https://www.toptal.com/developers/gitignore/api/java,maven,intellij
 /externalSource.env
