@@ -14,8 +14,8 @@ public abstract class TestBase {
 
     @BeforeAll
     static void setupBase() {
-        loginPage = new LoginPage(Dotenv.configure().filename("URLs.env").load().get("login_url"));
-        profilePage = new ProfilePage(Dotenv.configure().filename("URLs.env").load().get("profile_url"));
+        loginPage = new LoginPage(System.getenv("LOGIN_URL"));
+        profilePage = new ProfilePage(System.getenv("PROFILE_URL"));
     }
 
     @AfterAll

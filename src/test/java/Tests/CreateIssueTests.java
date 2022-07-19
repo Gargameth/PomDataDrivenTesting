@@ -31,7 +31,7 @@ public class CreateIssueTests extends TestBase {
 
     @Test
     void CreateIssueTest() {
-        DashboardPage dashboard = new DashboardPage(Dotenv.configure().filename("URLs.env").load().get("dashboard_url"));
+        DashboardPage dashboard = new DashboardPage(System.getenv("DASHBOARD_URL"));
         dashboard.Navigate();
         String summary = new Timestamp(System.currentTimeMillis()).toString();
         newIssueUrl = dashboard.CreateIssue("MTP", "Bug", summary);
