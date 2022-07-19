@@ -1,8 +1,12 @@
 package Tests;
 
+import Pages.Utils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+
+import java.io.IOException;
+import java.util.List;
 
 public class LoginTests extends TestBase {
 
@@ -17,8 +21,12 @@ public class LoginTests extends TestBase {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/InvalidLoginData.csv", numLinesToSkip = 1)
-    void LoginWithInvalidCredentialsTest(String username, String password) {
+    void LoginWithInvalidCredentialsTest(String username, String password) throws IOException {
         loginPage.Login(username, password);
-        Assertions.assertTrue(loginPage.loginErrorMessage.isDisplayed());
+        Assertions.assertTrue(loginPage.GetLoginErrorMessage());
+        List<String> credentials = Utils.ReadUsernameAndPasswordFromCSV();
+        loginPage.Login(credentials.get(0), credentials.get(1));
+        profilePage.Navigate();
+        profilePage.Logout();
     }
 }

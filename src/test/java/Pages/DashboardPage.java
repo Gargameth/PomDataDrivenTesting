@@ -17,7 +17,7 @@ public class DashboardPage extends BasePage{
         super(url);
     }
     @FindBy(id = "create_link")
-    public static WebElement createIssueButton;
+    WebElement createIssueButton;
 
     public String CreateIssue(String project, String issueType, String summary) {
         createIssueButton.click();
@@ -33,6 +33,6 @@ public class DashboardPage extends BasePage{
             issueSummaryField.sendKeys(summary);
         WebElement createIssueSubmitButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("create-issue-submit")));
             createIssueSubmitButton.click();
-        return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/div[1]/div/div/a"))).getAttribute("href");
+        return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/div[1]/div/div/a"))).getAttribute("href"); //ToDo
     }
 }
