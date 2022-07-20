@@ -7,13 +7,15 @@ import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 
+import java.net.MalformedURLException;
+
 public abstract class TestBase {
 
     static public LoginPage loginPage;
     static public ProfilePage profilePage;
 
     @BeforeAll
-    static void setupBase() {
+    static void setupBase() throws MalformedURLException {
         loginPage = new LoginPage(System.getenv("LOGIN_URL"));
         profilePage = new ProfilePage(System.getenv("PROFILE_URL"));
     }

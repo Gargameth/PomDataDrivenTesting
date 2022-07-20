@@ -11,6 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
 
 public class BrowseIssueTests extends TestBase {
@@ -28,7 +29,7 @@ public class BrowseIssueTests extends TestBase {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/Issues.csv", numLinesToSkip = 1)
-    void BrowseProjectsTest(@NotNull String issue, String url) {
+    void BrowseProjectsTest(@NotNull String issue, String url) throws MalformedURLException {
         IssuePage actualIssue = new IssuePage(url);
         actualIssue.Navigate();
         Assertions.assertTrue(issue.contains(actualIssue.GetSummary()));

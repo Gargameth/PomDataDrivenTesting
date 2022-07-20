@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class CreateIssueTests extends TestBase {
     }
 
     @Test
-    void CreateIssueTest() {
+    void CreateIssueTest() throws MalformedURLException {
         DashboardPage dashboard = new DashboardPage(System.getenv("DASHBOARD_URL"));
         dashboard.Navigate();
         String summary = new Timestamp(System.currentTimeMillis()).toString();
