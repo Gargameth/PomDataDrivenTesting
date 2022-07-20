@@ -28,7 +28,7 @@ public class Utils {
             ChromeOptions capabilities = new ChromeOptions();
             capabilities.setCapability("browserVersion", "96.0");
             capabilities.setCapability("platformName", "Linux");
-            driver = new RemoteWebDriver((CommandExecutor) new Uri("http://172.21.0.6:5555"), capabilities);
+            driver = new RemoteWebDriver(new URL("http://172.21.0.6:5555"), capabilities);
         }
         return driver;
     }
