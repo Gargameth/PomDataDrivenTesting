@@ -25,7 +25,7 @@ public class Utils {
 
     public static WebDriver GetDriver() throws MalformedURLException {
         if (driver == null) {
-            ChromeOptions capabilities = new ChromeOptions();
+            DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("browserVersion", "96.0");
             capabilities.setCapability("platformName", "Linux");
             driver = new RemoteWebDriver(new URL("http://172.21.0.6:5555"), capabilities);
