@@ -1,8 +1,10 @@
 package Pages;
 
+import com.sun.jndi.toolkit.url.Uri;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.CommandExecutor;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -24,7 +26,9 @@ public class Utils {
     public static WebDriver GetDriver() throws MalformedURLException {
         if (driver == null) {
             ChromeOptions capabilities = new ChromeOptions();
-            driver = new RemoteWebDriver(new URL("http://172.21.0.6:5555"), capabilities);
+            capabilities.setCapability("browserVersion", "96.0");
+            capabilities.setCapability("platformName", "Linux");
+            driver = new RemoteWebDriver((CommandExecutor) new Uri("http://172.21.0.6:5555"), capabilities);
         }
         return driver;
     }
