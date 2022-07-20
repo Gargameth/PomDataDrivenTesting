@@ -13,11 +13,13 @@ public abstract class TestBase {
 
     static public LoginPage loginPage;
     static public ProfilePage profilePage;
+    public static Dotenv dotenv;
 
     @BeforeAll
     static void setupBase() throws MalformedURLException {
-        loginPage = new LoginPage(System.getenv("LOGIN_URL"));
-        profilePage = new ProfilePage(System.getenv("PROFILE_URL"));
+        dotenv = Dotenv.configure().filename("URLs.env").load();
+        loginPage = new LoginPage(dotenv.get("login_url"));
+        profilePage = new ProfilePage(dotenv.get("profile_url"));
     }
 
     @AfterAll

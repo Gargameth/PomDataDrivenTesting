@@ -18,10 +18,13 @@ public class CreateIssueTests extends TestBase {
     String newIssueUrl;
     IssuePage actualIssue;
 
+    private static Dotenv dotenv;
+
     @BeforeEach
     void setupClass() throws IOException {
         List<String> credentials = Utils.ReadUsernameAndPasswordFromCSV();
         loginPage.Login(credentials.get(0), credentials.get(1));
+        dotenv = Dotenv.configure().filename("URLs.env").load();
     }
 
     @AfterEach
@@ -32,7 +35,7 @@ public class CreateIssueTests extends TestBase {
 
     @Test
     void CreateIssueTest() throws MalformedURLException {
-        DashboardPage dashboard = new DashboardPage(System.getenv("DASHBOARD_URL"));
+        DashboardPage dashboard = new DashboardPage(dotenv.get("dashboard_url"));
         dashboard.Navigate();
         String summary = new Timestamp(System.currentTimeMillis()).toString();
         newIssueUrl = dashboard.CreateIssue("MTP", "Bug", summary);
