@@ -4,9 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.net.MalformedURLException;
+
 public class ProjectPage extends BasePage{
 
-    public ProjectPage(String url) {
+    public ProjectPage(String url) throws MalformedURLException {
         super(url);
     }
 

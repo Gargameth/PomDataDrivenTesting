@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -18,9 +19,8 @@ public class CreateIssueTests extends TestBase {
     IssuePage actualIssue;
 
     @BeforeEach
-    void setupClass() throws IOException {
-        List<String> credentials = Utils.ReadUsernameAndPasswordFromCSV();
-        loginPage.Login(credentials.get(0), credentials.get(1));
+    void setupClass() {
+        loginPage.Login(System.getenv("ValidUsername"), System.getenv("ValidPassword"));
     }
 
     @AfterEach
@@ -30,8 +30,11 @@ public class CreateIssueTests extends TestBase {
     }
 
     @Test
-    void CreateIssueTest() {
-        DashboardPage dashboard = new DashboardPage(System.getenv("DASHBOARD_URL"));
+    void CreateIssueTest() throws MalformedURLException {
+        Dotenv dotenv = Dotenv.configure()
+                .filename("URLs.env")
+                .load();
+        DashboardPage dashboard = new DashboardPage(dotenv.get("DASHBOARD_URL"));
         dashboard.Navigate();
         String summary = new Timestamp(System.currentTimeMillis()).toString();
         newIssueUrl = dashboard.CreateIssue("MTP", "Bug", summary);

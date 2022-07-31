@@ -1,14 +1,16 @@
 package Tests;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
 public class LogoutTests extends TestBase {
 
-    @ParameterizedTest
-    @CsvFileSource(resources = "/ValidLoginData.csv", numLinesToSkip = 1)
-    void LogoutTest(String username, String password) {
+    @Test
+    void LogoutTest() {
+        String username = System.getenv("ValidUsername");
+        String password = System.getenv("ValidPassword");
         loginPage.Login(username, password);
         profilePage.Logout();
         loginPage.Navigate();

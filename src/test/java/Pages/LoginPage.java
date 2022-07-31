@@ -4,9 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.net.MalformedURLException;
+
 public class LoginPage extends BasePage{
 
-    public LoginPage(String url) {
+    public LoginPage(String url) throws MalformedURLException {
         super(url);
     }
 

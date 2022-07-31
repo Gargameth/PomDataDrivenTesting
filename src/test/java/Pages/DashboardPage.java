@@ -7,13 +7,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.net.MalformedURLException;
 import java.time.Duration;
 
 
 public class DashboardPage extends BasePage{
 
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    public DashboardPage(String url) {
+    public DashboardPage(String url) throws MalformedURLException {
         super(url);
     }
     @FindBy(id = "create_link")

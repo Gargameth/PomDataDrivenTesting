@@ -3,9 +3,11 @@ package Pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.net.MalformedURLException;
+
 public class IssuePage extends BasePage{
 
-    public IssuePage(String url) {
+    public IssuePage(String url) throws MalformedURLException {
         super(url);
     }
 
