@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'mvn -Dtest=CreateIssueTests test'
+                sh 'mvn test'
             }
         }
     }
