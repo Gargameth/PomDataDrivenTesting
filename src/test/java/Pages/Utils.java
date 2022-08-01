@@ -15,7 +15,6 @@ public class Utils {
     public static WebDriver GetDriver() throws MalformedURLException {
         if (driver == null) {
             String nodeURL = "https://selenium:" + System.getenv("ValidPassword") + "@seleniumhub.codecool.metastage.net/wd/hub";
-            System.out.println(nodeURL);
             ChromeOptions chromeOptions = new ChromeOptions();
             FirefoxOptions firefoxOptions = new FirefoxOptions();
             if ("firefox".equals(System.getenv("browserName"))) {
