@@ -12,7 +12,7 @@ pipeline {
         stage('Test') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'Creds', usernameVariable: 'ValidUsername', passwordVariable: 'ValidPassword')]) {
-                    sh 'mvn test'
+                    sh 'mvn clean test'
                 }
             }
             post {
