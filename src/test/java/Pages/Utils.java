@@ -3,13 +3,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Utils {
     private static RemoteWebDriver driver = null;
@@ -21,7 +17,12 @@ public class Utils {
             String nodeURL = "https://selenium:" + System.getenv("ValidPassword") + "@seleniumhub.codecool.metastage.net/wd/hub";
             System.out.println(nodeURL);
             ChromeOptions chromeOptions = new ChromeOptions();
-            driver = new RemoteWebDriver(new URL(nodeURL), chromeOptions);
+            FirefoxOptions firefoxOptions = new FirefoxOptions();
+            if ("firefox".equals(System.getenv("browserName"))) {
+                driver = new RemoteWebDriver(new URL(nodeURL), firefoxOptions);
+            } else {
+                driver = new RemoteWebDriver(new URL(nodeURL), chromeOptions);
+            }
         }
         return driver;
     }
